@@ -10,6 +10,7 @@ public class Airstrip extends Server {
     }
 
     public Airstrip(int id, List<Queue> queues, ServerQueuePolicy serverQueuePolicy) {
+        super(id,queues,serverQueuePolicy);
 
     }
 

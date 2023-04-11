@@ -8,7 +8,9 @@ public class ArrivalBehavior implements Behavior {
     private Randomizer randomizer;
     private Distribution<Double> distribution;
 
-    public ArrivalBehavior(Randomizer randomizer) {}
+    public ArrivalBehavior(Randomizer randomizer) {
+        this.randomizer=randomizer;
+    }
 
     /**
      * {@inheritDoc}

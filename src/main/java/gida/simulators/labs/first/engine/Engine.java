@@ -5,6 +5,18 @@ package gida.simulators.labs.first.engine;
  */
 public abstract class Engine implements Runnable {
 
+    public boolean isStop() {
+        return stop;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
+    }
+
+    public Reportable getReportable() {
+        return reportable;
+    }
+
     private boolean stop = false;
 
     private final Reportable reportable;
