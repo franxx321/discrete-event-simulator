@@ -17,7 +17,7 @@ public interface ServerQueuePolicy {
     /**
      * queues an entity using the underlying policy implementation.
      * 
-     * @param servers the queues list.
+     * @param queues the queues list.
      * @param entity the entity to be queued in some queue.
      */
     void enqueue(List<Queue> queues, Entity entity);

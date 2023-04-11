@@ -14,7 +14,13 @@ public class EndOfService extends Event {
 
     @Override
     public void planificate(FutureEventList fel, List<Server> servers) {
-        if()
+        if(/*TOASK como veo en que servidor esta la entidad para ver si este tiene cola?*/){
+            //Aca iria la linea que marcaria el servidor actual como desocupado, SI TAN SOLO SUPIERA MI SERVIDOR
+        }
+        else{
+            /*TOASK tengo que saber de manera magica cual es la entidad a la que le genero el EoS o genero una nueva? si
+            *   genero una nueva, no se me va a la mierda la lista de eventos de la entidad?*/
+        }
     }
 
     @Override

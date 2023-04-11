@@ -9,32 +9,37 @@ public class CustomQueue implements Queue {
 
     @Override
     public int getId() {
+        return this.id;
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getId'");
+        //throw new UnsupportedOperationException("Unimplemented method 'getId'");
     }
 
     @Override
     public boolean isEmpty() {
+        return this.queue.isEmpty();
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+        //throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
     }
 
     @Override
     public void enqueue(Entity entity) {
+        this.queue.add(entity);
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enqueue'");
+        //throw new UnsupportedOperationException("Unimplemented method 'enqueue'");
     }
 
     @Override
     public Entity checkNext() {
+         return this.queue.peek();
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'checkNext'");
+        //throw new UnsupportedOperationException("Unimplemented method 'checkNext'");
     }
 
     @Override
     public Entity next() {
+        return this.queue.remove();
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'next'");
+        //throw new UnsupportedOperationException("Unimplemented method 'next'");
     }
 
     @Override
