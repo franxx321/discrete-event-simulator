@@ -21,16 +21,18 @@ public class AirportSim extends Engine {
 
     private ServerSelectionPolicy policy;
 
+    private CustomReport report;
+
     public AirportSim(double endClock, List<Server> servers, ServerSelectionPolicy policy,
-                      Randomizer randomizer, Reportable report) {
-        super(report);
+                      Randomizer randomizer, CustomReport report) {
+        super();
         this.servers=servers;
         this.randomizer=randomizer;
         this.policy=policy;
         this.fel =new FutureEventList();
         Aircraft aircraft = null;
         this.fel.insert(new StopSimulation(endClock,this));
-        Arrival event= new Arrival(0,aircraft,new ArrivalBehavior(randomizer),new EndOfServiceBehavior(randomizer),policy);
+        Arrival event= new Arrival(0,aircraft,new ArrivalBehavior(randomizer),new EndOfServiceBehavior(randomizer),policy,report);
         this.fel.insert(event);
         aircraft=new Aircraft(1,  event);
 
@@ -43,8 +45,8 @@ public class AirportSim extends Engine {
         while (!this.isStop()){
             Event event= this.fel.getImminent();
             event.planificate(this.fel,this.servers);
-
         }
+        report.generateReport();
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'run'");
     }

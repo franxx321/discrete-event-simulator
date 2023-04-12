@@ -4,6 +4,7 @@ import java.util.List;
 
 import gida.simulators.labs.first.behaviors.ArrivalBehavior;
 import gida.simulators.labs.first.behaviors.EndOfServiceBehavior;
+import gida.simulators.labs.first.engine.CustomReport;
 import gida.simulators.labs.first.engine.FutureEventList;
 import gida.simulators.labs.first.entities.Aircraft;
 import gida.simulators.labs.first.policies.ServerSelectionPolicy;
@@ -17,14 +18,17 @@ public class Arrival extends Event {
 
     private EndOfServiceBehavior endOfServiceBehavior;
 
+    private CustomReport report;
+
 
 
 
     public Arrival(double clock, Entity entity, Behavior behavior,
-            EndOfServiceBehavior endOfServiceBehavior, ServerSelectionPolicy policy) {
+                   EndOfServiceBehavior endOfServiceBehavior, ServerSelectionPolicy policy, CustomReport report) {
         super(clock,entity,behavior,2);
         this.endOfServiceBehavior=endOfServiceBehavior;
         this.policy=policy;
+        this.report=report;
 
     }
 
@@ -35,13 +39,15 @@ public class Arrival extends Event {
             server.enqueue(this.getEntity());
         } else {
             server.setCurrentEntity(this.getEntity());
-            fel.insert(new EndOfService((this.getClock() + endOfServiceBehavior.nextTime()), this.getEntity(), endOfServiceBehavior));
+            report.sumIdletime((this.getClock()-server.getLastIdleStartTime()));
+            fel.insert(new EndOfService((this.getClock() + endOfServiceBehavior.nextTime()), this.getEntity(), endOfServiceBehavior,this.report));
         }
         /*TOASK Esto esta mas raro que la mierda, hay que preguntarle al profe que onda*/
         Aircraft aircraft = null;
-        Arrival event = new Arrival((this.getClock() + this.getBehavior().nextTime()), aircraft, this.getBehavior(), endOfServiceBehavior, policy);
+        Arrival event = new Arrival((this.getClock() + this.getBehavior().nextTime()), aircraft, this.getBehavior(), this.endOfServiceBehavior, this.policy,this.report);
         aircraft = new Aircraft(this.getEntity().getId() + 1, event);
         fel.insert(event);
+
 
     }
 

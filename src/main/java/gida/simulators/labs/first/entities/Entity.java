@@ -33,6 +33,19 @@ public abstract class Entity {
         return this.events;
     }
 
+    //Todo encontrar una forma mas elegante de hacer este evento
+    public Event getArrival() {
+        Event ret=null;
+        for (Event event : events
+        ) {
+            if (event instanceof Arrival) {
+                ret= event;
+            }
+        }
+        return ret;
+    }
+
+
     public void addEvent(Event event) {
         this.events.add(event.getOrder(), event);
     }

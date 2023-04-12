@@ -5,6 +5,9 @@ package gida.simulators.labs.first.engine;
  */
 public abstract class Engine implements Runnable {
 
+
+    private boolean stop = false;
+
     public boolean isStop() {
         return stop;
     }
@@ -13,16 +16,10 @@ public abstract class Engine implements Runnable {
         this.stop = stop;
     }
 
-    public Reportable getReportable() {
-        return reportable;
-    }
 
-    private boolean stop = false;
 
-    private final Reportable reportable;
+    public Engine() {
 
-    public Engine(Reportable reportable) {
-        this.reportable = reportable;
     }
 
     /**

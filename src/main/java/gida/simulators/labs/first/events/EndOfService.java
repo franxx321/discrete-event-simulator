@@ -2,26 +2,34 @@ package gida.simulators.labs.first.events;
 
 import java.util.List;
 import gida.simulators.labs.first.behaviors.EndOfServiceBehavior;
+import gida.simulators.labs.first.engine.CustomReport;
 import gida.simulators.labs.first.engine.FutureEventList;
 import gida.simulators.labs.first.entities.Entity;
 import gida.simulators.labs.first.resources.Server;
 
 public class EndOfService extends Event {
 
-    public EndOfService(double clock, Entity entity, EndOfServiceBehavior behavior) {
+    private CustomReport report;
+
+    public EndOfService(double clock, Entity entity, EndOfServiceBehavior behavior, CustomReport report) {
         super(clock,entity,behavior,0);
+        this.report=report;
     }
 
     @Override
     public void planificate(FutureEventList fel, List<Server> servers) {
-        if(this.getEntity().getServer().queuesEmpty()){
-            this.getEntity().getServer().setCurrentEntity(null);
+        Server server= this.getEntity().getServer();
+        if(server.queuesEmpty()){
+            server.setCurrentEntity(null);
         }
         else{
-            Entity currentEntity= this.getEntity().getServer().dequeue();
-            this.getEntity().getServer().setCurrentEntity(currentEntity);
-            fel.insert(new EndOfService(+this.getBehavior().nextTime(),currentEntity,(EndOfServiceBehavior)this.getBehavior()));
+            Entity currentEntity= server.dequeue();
+            server.setCurrentEntity(currentEntity);
+            fel.insert(new EndOfService(+this.getBehavior().nextTime(),currentEntity,(EndOfServiceBehavior)this.getBehavior(),this.report));
+            report.sumQueuetime(this.getClock()-currentEntity.getArrival().getClock());
         }
+        this.getEntity().addEvent(this);
+        this.report.addEntityAmount();
     }
 
     @Override
