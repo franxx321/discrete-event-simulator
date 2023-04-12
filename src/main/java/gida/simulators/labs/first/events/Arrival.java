@@ -30,20 +30,18 @@ public class Arrival extends Event {
 
     @Override
     public void planificate(FutureEventList fel, List<Server> servers) {
-        Server server=policy.selectServer(servers);
-        if (server.isBusy()){
+        Server server = policy.selectServer(servers);
+        if (server.isBusy()) {
             server.enqueue(this.getEntity());
-            /*TOASK Esto esta mas raro que la mierda, hay que preguntarle al profe que onda*/
-            Aircraft aircraft=null;
-            Arrival event = new Arrival((this.getClock() + this.getBehavior().nextTime()),aircraft,this.getBehavior(),endOfServiceBehavior,policy);
-            aircraft=new Aircraft(this.getEntity().getId()+1,event);
-            fel.insert(event);
+        } else {
+            server.setCurrentEntity(this.getEntity());
+            fel.insert(new EndOfService((this.getClock() + endOfServiceBehavior.nextTime()), this.getEntity(), endOfServiceBehavior));
         }
-        else {
-            this.policy.selectServer(servers).setCurrentEntity(this.getEntity());
-            fel.insert(new EndOfService((this.getClock()+endOfServiceBehavior.nextTime()),this.getEntity(),endOfServiceBehavior));
-        }
-
+        /*TOASK Esto esta mas raro que la mierda, hay que preguntarle al profe que onda*/
+        Aircraft aircraft = null;
+        Arrival event = new Arrival((this.getClock() + this.getBehavior().nextTime()), aircraft, this.getBehavior(), endOfServiceBehavior, policy);
+        aircraft = new Aircraft(this.getEntity().getId() + 1, event);
+        fel.insert(event);
 
     }
 

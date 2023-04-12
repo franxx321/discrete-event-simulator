@@ -18,8 +18,9 @@ public class EndOfService extends Event {
             this.getEntity().getServer().setCurrentEntity(null);
         }
         else{
-            /*TOASK tengo que saber de manera magica cual es la entidad a la que le genero el EoS o genero una nueva? si
-            *   genero una nueva, no se me va a la mierda la lista de eventos de la entidad?*/
+            Entity currentEntity= this.getEntity().getServer().dequeue();
+            this.getEntity().getServer().setCurrentEntity(currentEntity);
+            fel.insert(new EndOfService(+this.getBehavior().nextTime(),currentEntity,(EndOfServiceBehavior)this.getBehavior()));
         }
     }
 

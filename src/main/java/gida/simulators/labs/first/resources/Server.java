@@ -9,6 +9,7 @@ public abstract class Server {
     private int id;
 
     private Entity currentEntity;
+
     private List<Queue> queues;
 
     private ServerQueuePolicy policy;
