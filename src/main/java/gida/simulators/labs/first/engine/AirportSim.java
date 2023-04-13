@@ -31,11 +31,14 @@ public class AirportSim extends Engine {
         this.randomizer=randomizer;
         this.policy=policy;
         this.fel =new FutureEventList();
-        Aircraft aircraft = null;
+        this.report=report;
         this.fel.insert(new StopSimulation(endClock,this));
-        Arrival event= new Arrival(0,aircraft,new ArrivalBehavior(randomizer),new EndOfServiceBehavior(randomizer),policy,report);
+        Aircraft aircraft =new Aircraft(1);
+        Arrival event = new Arrival(0,aircraft, new ArrivalBehavior(randomizer), new EndOfServiceBehavior(randomizer), this.policy,this.report);
+        aircraft.addEvent(event);
         this.fel.insert(event);
-        aircraft=new Aircraft(1,  event);
+
+
 
     }
 

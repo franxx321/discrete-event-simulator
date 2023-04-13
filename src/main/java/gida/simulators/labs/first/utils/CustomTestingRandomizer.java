@@ -26,8 +26,8 @@ public class CustomTestingRandomizer implements Randomizer {
 
     @Override
     public double nextRandom() {
-        randoms.get(counter);
+        double ret =randoms.get(counter);
         counter++;
-        return 0;
+        return ret;
     }
 }
