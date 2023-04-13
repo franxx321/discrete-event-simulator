@@ -34,6 +34,10 @@ public class FutureEventList {
 
     }
 
+    public boolean hasNext(){
+        return this.hasNext();
+    }
+
     @Override
     public String toString() {
         String ret =

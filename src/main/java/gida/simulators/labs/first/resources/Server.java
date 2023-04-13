@@ -14,9 +14,6 @@ public abstract class Server {
 
     private ServerQueuePolicy policy;
 
-    //Todo ver si esto lo dejo aca o lo cambio
-    private double lastIdleStartTime;
-
     public Server() {}
 
     public Server(int id, List<Queue> queues, ServerQueuePolicy policy) {
@@ -41,13 +38,6 @@ public abstract class Server {
         this.currentEntity = currentEntity;
     }
 
-    public double getLastIdleStartTime() {
-        return lastIdleStartTime;
-    }
-
-    public void setLastIdleStartTime(double lastIdleStartTime) {
-        this.lastIdleStartTime = lastIdleStartTime;
-    }
 
     public boolean isBusy() {
         return this.currentEntity!=null;

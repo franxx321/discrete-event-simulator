@@ -9,8 +9,7 @@ public class OneToOneQueuePolicy implements ServerQueuePolicy {
     @Override
     public boolean queuesEmpty(List<Queue> queues) {
         return queues.get(0).isEmpty();
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'queuesEmpty'");
+
     }
 
     @Override

@@ -5,6 +5,8 @@ import gida.simulators.labs.first.policies.ServerQueuePolicy;
 
 public class Airstrip extends Server {
 
+    private double lastIdleStartTime;
+
     public Airstrip() {
         super();
     }
@@ -12,6 +14,14 @@ public class Airstrip extends Server {
     public Airstrip(int id, List<Queue> queues, ServerQueuePolicy serverQueuePolicy) {
         super(id,queues,serverQueuePolicy);
 
+    }
+
+    public double getLastIdleStartTime() {
+        return lastIdleStartTime;
+    }
+
+    public void setLastIdleStartTime(double lastIdleStartTime) {
+        this.lastIdleStartTime = lastIdleStartTime;
     }
 
     @Override

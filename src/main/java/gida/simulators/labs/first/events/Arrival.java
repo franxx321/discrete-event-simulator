@@ -8,6 +8,7 @@ import gida.simulators.labs.first.engine.CustomReport;
 import gida.simulators.labs.first.engine.FutureEventList;
 import gida.simulators.labs.first.entities.Aircraft;
 import gida.simulators.labs.first.policies.ServerSelectionPolicy;
+import gida.simulators.labs.first.resources.Airstrip;
 import gida.simulators.labs.first.resources.Server;
 import gida.simulators.labs.first.entities.Entity;
 import gida.simulators.labs.first.behaviors.Behavior;
@@ -39,7 +40,11 @@ public class Arrival extends Event {
             server.enqueue(this.getEntity());
         } else {
             server.setCurrentEntity(this.getEntity());
-            report.sumIdletime((this.getClock()-server.getLastIdleStartTime()));
+            double idletime = this.getClock() - ((Airstrip) server).getLastIdleStartTime();
+            if (idletime>report.getMaxIdleTime()){
+                report.setMaxIdleTime(idletime);
+            }
+            report.sumIdletime(idletime);
             fel.insert(new EndOfService((this.getClock() + endOfServiceBehavior.nextTime()), this.getEntity(), endOfServiceBehavior,this.report));
         }
         /*TOASK Esto esta mas raro que la mierda, hay que preguntarle al profe que onda*/

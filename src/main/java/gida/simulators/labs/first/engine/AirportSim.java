@@ -6,6 +6,7 @@ import gida.simulators.labs.first.behaviors.ArrivalBehavior;
 import gida.simulators.labs.first.behaviors.EndOfServiceBehavior;
 import gida.simulators.labs.first.entities.Aircraft;
 import gida.simulators.labs.first.events.Arrival;
+import gida.simulators.labs.first.events.EndOfService;
 import gida.simulators.labs.first.events.Event;
 import gida.simulators.labs.first.events.StopSimulation;
 import gida.simulators.labs.first.policies.ServerSelectionPolicy;
@@ -45,6 +46,12 @@ public class AirportSim extends Engine {
         while (!this.isStop()){
             Event event= this.fel.getImminent();
             event.planificate(this.fel,this.servers);
+        }
+        while(fel.hasNext()){
+            Event event= this.fel.getImminent();
+            if(event instanceof EndOfService){
+                event.planificate(this.fel,this.servers);
+            }
         }
         report.generateReport();
         // TODO Auto-generated method stub

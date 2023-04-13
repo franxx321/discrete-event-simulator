@@ -26,7 +26,11 @@ public class EndOfService extends Event {
             Entity currentEntity= server.dequeue();
             server.setCurrentEntity(currentEntity);
             fel.insert(new EndOfService(+this.getBehavior().nextTime(),currentEntity,(EndOfServiceBehavior)this.getBehavior(),this.report));
-            report.sumQueuetime(this.getClock()-currentEntity.getArrival().getClock());
+            double queuetime = this.getClock() - currentEntity.getArrival().getClock();
+            if(queuetime>report.getMaxQueueTime()){
+                report.setMaxQueueTime(queuetime);
+            }
+            report.sumQueuetime(queuetime);
         }
         this.getEntity().addEvent(this);
         this.report.addEntityAmount();
