@@ -40,7 +40,6 @@ public class Arrival extends Event {
             server.enqueue(this.getEntity());
         } else {
             server.setCurrentEntity(this.getEntity());
-            this.getEntity().setServer(server);
             double idletime = this.getClock() - ((Airstrip) server).getLastIdleStartTime();
             if (idletime>report.getMaxIdleTime()){
                 report.setMaxIdleTime(idletime);
@@ -49,9 +48,9 @@ public class Arrival extends Event {
             fel.insert(new EndOfService((this.getClock() + endOfServiceBehavior.nextTime()), this.getEntity(), endOfServiceBehavior,this.report));
         }
         /*TOASK Esto esta mas raro que la mierda, hay que preguntarle al profe que onda*/
-        Aircraft aircraft =new Aircraft(this.getEntity().getId() + 1);
-        Arrival event = new Arrival((this.getClock() + this.getBehavior().nextTime()),aircraft, this.getBehavior(), this.endOfServiceBehavior, this.policy,this.report);
-        aircraft.addEvent(event);
+        Aircraft aircraft = null;
+        Arrival event = new Arrival((this.getClock() + this.getBehavior().nextTime()), aircraft, this.getBehavior(), this.endOfServiceBehavior, this.policy,this.report);
+        aircraft = new Aircraft(this.getEntity().getId() + 1, event);
         fel.insert(event);
 
 

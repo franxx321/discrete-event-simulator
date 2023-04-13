@@ -8,10 +8,6 @@ public class Aircraft extends Entity {
         super(id, arrival);
     }
 
-    public Aircraft(int id){
-        super(id);
-    }
-
     @Override
     public String toString() {
         return "type: aircraft - id: " + this.getId();

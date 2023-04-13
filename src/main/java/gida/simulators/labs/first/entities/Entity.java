@@ -23,12 +23,6 @@ public abstract class Entity {
         this.order=new Order();
     }
 
-    public Entity(int id) {
-        this.id = id;
-        events=new ArrayList<>();
-        this.order=new Order();
-    }
-
     public int getId() {return id;
     }
 
