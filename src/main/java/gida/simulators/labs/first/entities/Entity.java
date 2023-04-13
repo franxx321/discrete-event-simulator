@@ -5,6 +5,7 @@ import java.util.List;
 import gida.simulators.labs.first.events.Arrival;
 import gida.simulators.labs.first.events.Event;
 import gida.simulators.labs.first.resources.Server;
+import gida.simulators.labs.first.utils.Order;
 
 public abstract class Entity {
 
@@ -13,9 +14,13 @@ public abstract class Entity {
     private Server server;
     private List<Event> events;
 
+    Order order;
+
     public Entity(int id, Arrival arrival) {
+        events=new ArrayList<>();
         this.id=id;
-        this.events.add(arrival.getOrder(),arrival);
+        this.events.add(arrival);
+        this.order=new Order();
     }
 
     public int getId() {return id;
@@ -47,6 +52,7 @@ public abstract class Entity {
 
 
     public void addEvent(Event event) {
-        this.events.add(event.getOrder(), event);
+        this.events.add(event);
+        events.sort(order);
     }
 }

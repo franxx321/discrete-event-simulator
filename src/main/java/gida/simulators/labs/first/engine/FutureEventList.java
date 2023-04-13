@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import gida.simulators.labs.first.events.Event;
 import gida.simulators.labs.first.utils.Order;
 

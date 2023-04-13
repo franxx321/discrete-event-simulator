@@ -22,5 +22,6 @@ public class App {
         queues.add(0,new CustomQueue());
         servers.add(0,new Airstrip(1,queues,new OneToOneQueuePolicy()));
         AirportSim sim =new AirportSim(SIMULATION_LENGHT,servers,new UniqueServerSelectionPolicy(),new CustomTestingRandomizer(1),new CustomReport());
+        sim.run();
     }
 }
