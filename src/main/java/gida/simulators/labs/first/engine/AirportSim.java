@@ -30,19 +30,17 @@ public class AirportSim extends Engine {
         this.servers=servers;
         this.randomizer=randomizer;
         this.policy=policy;
+        this.report=report;
         this.fel =new FutureEventList();
-        Aircraft aircraft = null;
         this.fel.insert(new StopSimulation(endClock,this));
+        Aircraft aircraft=new Aircraft(1);
         Arrival event= new Arrival(0,aircraft,new ArrivalBehavior(randomizer),new EndOfServiceBehavior(randomizer),policy,report);
+        aircraft.addEvent(event);
         this.fel.insert(event);
-        aircraft=new Aircraft(1,  event);
-
     }
 
     @Override
     public void run() {
-        //Todo terminar de implementar planificate en EoS
-        //  ver como hacer la recoleccion de datos(creo que voy a tener que pasar reportable o algo asi)
         while (!this.isStop()){
             Event event= this.fel.getImminent();
             event.planificate(this.fel,this.servers);

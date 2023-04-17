@@ -8,6 +8,7 @@ import gida.simulators.labs.first.resources.Airstrip;
 import gida.simulators.labs.first.resources.CustomQueue;
 import gida.simulators.labs.first.resources.Queue;
 import gida.simulators.labs.first.resources.Server;
+import gida.simulators.labs.first.utils.CustomRandomizer;
 import gida.simulators.labs.first.utils.CustomTestingRandomizer;
 
 import java.util.ArrayList;
@@ -19,9 +20,9 @@ public class App {
     public static void main(String[] args) {
         ArrayList<Server> servers =new ArrayList<>();
         ArrayList<Queue> queues =new ArrayList<>();
-        queues.add(0,new CustomQueue());
+        queues.add(0,new CustomQueue(1));
         servers.add(0,new Airstrip(1,queues,new OneToOneQueuePolicy()));
-        AirportSim sim =new AirportSim(SIMULATION_LENGHT,servers,new UniqueServerSelectionPolicy(),new CustomTestingRandomizer(1),new CustomReport());
+        AirportSim sim =new AirportSim(SIMULATION_LENGHT,servers,new UniqueServerSelectionPolicy(),new CustomRandomizer(),new CustomReport());
         sim.run();
     }
 }

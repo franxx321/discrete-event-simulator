@@ -7,6 +7,9 @@ public class Aircraft extends Entity {
     public Aircraft(int id, Arrival arrival) {
         super(id, arrival);
     }
+    public Aircraft(int id){
+        super(id);
+    }
 
     @Override
     public String toString() {

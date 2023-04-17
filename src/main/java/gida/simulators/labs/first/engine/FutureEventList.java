@@ -34,7 +34,7 @@ public class FutureEventList {
     }
 
     public boolean hasNext(){
-        return this.hasNext();
+        return this.fel.isEmpty();
     }
 
     @Override

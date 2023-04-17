@@ -22,6 +22,11 @@ public abstract class Entity {
         this.events.add(arrival);
         this.order=new Order();
     }
+    public Entity(int id){
+        events=new ArrayList<>();
+        this.id=id;
+        this.order=new Order();
+    }
 
     public int getId() {return id;
     }
