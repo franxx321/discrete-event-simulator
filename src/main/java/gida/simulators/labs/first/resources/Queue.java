@@ -6,6 +6,8 @@ public interface Queue {
 
     int getId();
 
+    int getSize();
+
     boolean isEmpty();
 
     void enqueue(Entity entity);

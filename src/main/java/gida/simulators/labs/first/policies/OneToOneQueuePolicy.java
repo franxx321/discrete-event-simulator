@@ -9,7 +9,6 @@ public class OneToOneQueuePolicy implements ServerQueuePolicy {
     @Override
     public boolean queuesEmpty(List<Queue> queues) {
         return queues.get(0).isEmpty();
-
     }
 
     @Override
@@ -25,4 +24,9 @@ public class OneToOneQueuePolicy implements ServerQueuePolicy {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'dequeue'");
     }
+
+    public Queue getQueue(List<Queue> queues){
+        return queues.get(0);
+    }
+
 }

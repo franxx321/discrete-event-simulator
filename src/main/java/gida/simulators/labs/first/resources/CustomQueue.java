@@ -23,6 +23,12 @@ public class CustomQueue implements Queue {
         //throw new UnsupportedOperationException("Unimplemented method 'getId'");
     }
 
+    public int getSize(){
+        int ret;
+        ret=this.queue.size();
+        return ret;
+    }
+
     @Override
     public boolean isEmpty() {
         return this.queue.isEmpty();

@@ -38,7 +38,6 @@ public abstract class Server {
         this.currentEntity = currentEntity;
     }
 
-
     public boolean isBusy() {
         return this.currentEntity!=null;
     }
@@ -55,6 +54,8 @@ public abstract class Server {
         return this.policy.dequeue(this.queues);
     }
 
+    public Queue getQueue(){return this.policy.getQueue(this.queues);}
+
     @Override
     public String toString() {
         String ret = "id: " + this.id + " -- current entity: " + this.currentEntity.getId() + "\n"
@@ -64,5 +65,9 @@ public abstract class Server {
             ret += "\t" + q.toString() + "\n";
 
         return ret;
+    }
+
+    public int getMaxSizeFromQueue() {
+        return this.policy.getMaxSizeQueue();
     }
 }

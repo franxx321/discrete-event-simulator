@@ -21,11 +21,11 @@ public class EndOfServiceBehavior implements Behavior {
     public double nextTime() {
         double ret;
         double r= randomizer.nextRandom();
-        if (r>0.1){
+        if (r<=0.1){
             ret=8;
-        } else if(r>0.48){
+        } else if(r<=0.48){
             ret=10;
-        } else if (r>0.8) {
+        } else if (r<=0.8) {
             ret=15;
         } else  {
             ret=20;

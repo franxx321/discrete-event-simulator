@@ -20,9 +20,9 @@ public class ArrivalBehavior implements Behavior {
     public double nextTime() {
         double ret;
         double r=randomizer.nextRandom();
-        if(r<0.3){
+        if(r<=0.3){
             ret=10;
-        } else if (r<0.7) {
+        } else if (r<=0.7) {
             ret=15;
         }
         else {

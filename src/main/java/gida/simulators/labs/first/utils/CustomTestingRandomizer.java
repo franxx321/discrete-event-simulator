@@ -16,18 +16,22 @@ public class CustomTestingRandomizer implements Randomizer {
                 randoms.add(0.2);
             }
         } else if (a==2) {
-            randoms.add(0.4);
-            randoms.add(0.5);
+            for (int i = 0; i <10 ; i++) {
+                randoms.add(0.4);
+                randoms.add(0.5);
+            }
         } else if (a==3) {
-            randoms.add(0.5);
-            randoms.add(0.2);
+            for (int i = 0; i <10 ; i++) {
+                randoms.add(0.5);
+                randoms.add(0.2);
+            }
         }
     }
 
     @Override
     public double nextRandom() {
-        randoms.get(counter);
+        double ret=randoms.get(counter);
         counter++;
-        return 0;
+        return ret;
     }
 }

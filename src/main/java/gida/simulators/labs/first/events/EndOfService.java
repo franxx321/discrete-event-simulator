@@ -35,6 +35,12 @@ public class EndOfService extends Event {
             }
             report.sumQueuetime(queuetime);
         }
+        double transitTime=this.getClock()-this.getEntity().getArrival().getClock();
+        report.sumTransitTime(transitTime);
+        if(transitTime>report.getMaxTransitTime()){
+            report.setMaxTransitTime(transitTime);
+        }
+
         this.getEntity().addEvent(this);
         this.report.addEntityAmount();
     }

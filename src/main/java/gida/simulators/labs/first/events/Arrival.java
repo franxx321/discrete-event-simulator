@@ -1,7 +1,6 @@
 package gida.simulators.labs.first.events;
 
 import java.util.List;
-
 import gida.simulators.labs.first.behaviors.ArrivalBehavior;
 import gida.simulators.labs.first.behaviors.EndOfServiceBehavior;
 import gida.simulators.labs.first.engine.CustomReport;
@@ -36,7 +35,9 @@ public class Arrival extends Event {
     @Override
     public void planificate(FutureEventList fel, List<Server> servers) {
         Server server = policy.selectServer(servers);
+        //TODO modificar el uso de la cola(usar la idea del getqueue)
         if (server.isBusy()) {
+            server.getMaxSizeFromQueue();
             server.enqueue(this.getEntity());
         } else {
             server.setCurrentEntity(this.getEntity());
