@@ -12,7 +12,7 @@ public interface ServerQueuePolicy {
      * @param queues the queues to be checked.
      * @return true if there is some entity waiting on some of the queues.
      */
-    boolean queuesEmpty(List<Queue> queues);
+    //boolean queuesEmpty(List<Queue> queues);
 
     /**
      * queues an entity using the underlying policy implementation.
@@ -20,7 +20,7 @@ public interface ServerQueuePolicy {
      * @param queues the queues list.
      * @param entity the entity to be queued in some queue.
      */
-    void enqueue(List<Queue> queues, Entity entity);
+    //void enqueue(List<Queue> queues, Entity entity);
 
     /**
      * dequeue the next entity using the underliying policy implementations.
@@ -28,9 +28,11 @@ public interface ServerQueuePolicy {
      * @param queues the list of queues.
      * @return the entity to be dequeued from some of those queues.
      */
-    Entity dequeue(List<Queue> queues);
+    //Entity dequeue(List<Queue> queues);
+
+
 
     Queue getQueue(List<Queue>queues);
 
-    int getMaxSizeQueue();
+
 }

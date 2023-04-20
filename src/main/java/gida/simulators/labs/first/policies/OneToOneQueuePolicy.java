@@ -6,24 +6,24 @@ import gida.simulators.labs.first.resources.Queue;
 
 public class OneToOneQueuePolicy implements ServerQueuePolicy {
 
-    @Override
+   /* @Override
     public boolean queuesEmpty(List<Queue> queues) {
         return queues.get(0).isEmpty();
-    }
+    }*/
 
-    @Override
+   /* @Override
     public void enqueue(List<Queue> queues, Entity entity) {
         queues.get(0).enqueue(entity);
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'enqueue'");
-    }
+    }*/
 
-    @Override
+  /*  @Override
     public Entity dequeue(List<Queue> queues) {
         return queues.get(0).next();
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'dequeue'");
-    }
+    }*/
 
     public Queue getQueue(List<Queue> queues){
         return queues.get(0);

@@ -8,6 +8,7 @@ import gida.simulators.labs.first.engine.FutureEventList;
 import gida.simulators.labs.first.entities.Aircraft;
 import gida.simulators.labs.first.policies.ServerSelectionPolicy;
 import gida.simulators.labs.first.resources.Airstrip;
+import gida.simulators.labs.first.resources.Queue;
 import gida.simulators.labs.first.resources.Server;
 import gida.simulators.labs.first.entities.Entity;
 import gida.simulators.labs.first.behaviors.Behavior;
@@ -37,8 +38,12 @@ public class Arrival extends Event {
         Server server = policy.selectServer(servers);
         //TODO modificar el uso de la cola(usar la idea del getqueue)
         if (server.isBusy()) {
-            server.getMaxSizeFromQueue();
-            server.enqueue(this.getEntity());
+            Queue currentqueue=server.getQueue();
+            currentqueue.enqueue(this.getEntity());
+            if(currentqueue.getSize()>report.getMaxServerQueueLength()){
+                report.setMaxServerQueueLength(currentqueue.getSize());
+            }
+
         } else {
             server.setCurrentEntity(this.getEntity());
             this.getEntity().setServer(server);
