@@ -13,7 +13,7 @@ public class CustomQueue implements Queue {
 
     public CustomQueue(int id) {
         this.id = id;
-        queue = new ArrayList();
+        queue = new ArrayList<Entity>();
     }
 
     @Override
