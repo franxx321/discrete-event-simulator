@@ -50,6 +50,7 @@ public class AirportSim extends Engine {
             Event event= this.fel.getImminent();
             if(event instanceof EndOfService){
                 event.planificate(this.fel,this.servers);
+                report.setLastClock(event.getClock());
             }
         }
         report.generateReport();
