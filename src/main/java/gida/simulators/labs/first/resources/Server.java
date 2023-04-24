@@ -54,7 +54,9 @@ public abstract class Server {
         return this.policy.dequeue(this.queues);
     }*/
 
-    public Queue getQueue(){return this.policy.getQueue(this.queues);}
+    public Queue getQueue(){
+        return this.policy.getQueue(this.queues);
+    }
 
     @Override
     public String toString() {

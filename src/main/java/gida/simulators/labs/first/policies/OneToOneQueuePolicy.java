@@ -14,15 +14,11 @@ public class OneToOneQueuePolicy implements ServerQueuePolicy {
    /* @Override
     public void enqueue(List<Queue> queues, Entity entity) {
         queues.get(0).enqueue(entity);
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'enqueue'");
     }*/
 
   /*  @Override
     public Entity dequeue(List<Queue> queues) {
-        return queues.get(0).next();
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'dequeue'");
+        return queues.get(0).next()
     }*/
 
     public Queue getQueue(List<Queue> queues){

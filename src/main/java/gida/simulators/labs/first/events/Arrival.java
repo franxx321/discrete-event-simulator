@@ -30,20 +30,17 @@ public class Arrival extends Event {
         this.endOfServiceBehavior=endOfServiceBehavior;
         this.policy=policy;
         this.report=report;
-
     }
 
     @Override
     public void planificate(FutureEventList fel, List<Server> servers) {
         Server server = policy.selectServer(servers);
-        //TODO modificar el uso de la cola(usar la idea del getqueue)
         if (server.isBusy()) {
             Queue currentqueue=server.getQueue();
             currentqueue.enqueue(this.getEntity());
             if(currentqueue.getSize()>report.getMaxServerQueueLength()){
                 report.setMaxServerQueueLength(currentqueue.getSize());
             }
-
         } else {
             server.setCurrentEntity(this.getEntity());
             this.getEntity().setServer(server);
@@ -54,13 +51,10 @@ public class Arrival extends Event {
             report.sumIdletime(idletime);
             fel.insert(new EndOfService((this.getClock() + endOfServiceBehavior.nextTime()), this.getEntity(), endOfServiceBehavior,this.report));
         }
-        /*TOASK Esto esta mas raro que la mierda, hay que preguntarle al profe que onda*/
         Aircraft aircraft = new Aircraft(this.getEntity().getId() + 1);
         Arrival event = new Arrival((this.getClock() + this.getBehavior().nextTime()), aircraft, this.getBehavior(), this.endOfServiceBehavior, this.policy,this.report);
         aircraft.addEvent(event);
         fel.insert(event);
-
-
     }
 
     @Override
