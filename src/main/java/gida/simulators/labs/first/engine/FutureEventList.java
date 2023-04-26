@@ -3,7 +3,6 @@ package gida.simulators.labs.first.engine;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.PriorityQueue;
-
 import gida.simulators.labs.first.events.Event;
 import gida.simulators.labs.first.utils.Order;
 

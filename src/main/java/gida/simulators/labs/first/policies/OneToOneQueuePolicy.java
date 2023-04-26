@@ -6,7 +6,7 @@ import gida.simulators.labs.first.resources.Queue;
 
 public class OneToOneQueuePolicy implements ServerQueuePolicy {
 
-   /* @Override
+    /*@Override
     public boolean queuesEmpty(List<Queue> queues) {
         return queues.get(0).isEmpty();
     }*/
