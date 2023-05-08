@@ -17,14 +17,14 @@ import java.util.ArrayList;
 
 public class App {
 
-    private static final double SIMULATION_LENGHT = 100;
+    private static final double SIMULATION_LENGHT = 40320;
 
     public static void main(String[] args) {
         ArrayList<Server> servers =new ArrayList<>();
         ArrayList<Queue> queues =new ArrayList<>();
         queues.add(0,new CustomQueue(1));
         servers.add(0,new Airstrip(1,queues,new OneToOneQueuePolicy()));
-        AirportSim sim =new AirportSim(SIMULATION_LENGHT,servers,new UniqueServerSelectionPolicy(),new CustomArrivalTestingRandomizer(3),new CustomReport(), new CustomEoSTestingRandomizer(3));
+        AirportSim sim =new AirportSim(SIMULATION_LENGHT,servers,new UniqueServerSelectionPolicy(),new CustomRandomizer(),new CustomReport(), new CustomRandomizer());
         sim.run();
     }
 }

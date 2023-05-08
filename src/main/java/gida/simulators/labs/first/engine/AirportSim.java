@@ -64,7 +64,7 @@ public class AirportSim extends Engine {
         for (Server server:servers
              ) {
             if(!(server.isBusy())){
-                double idleTime= endClock-((Airstrip)server).getLastIdleStartTime();
+                double idleTime= (endClock-((Airstrip)server).getLastIdleStartTime());
                 report.sumIdletime(idleTime);
                 if (idleTime>report.getMaxIdleTime()){
                     report.setMaxIdleTime(idleTime);
@@ -72,7 +72,6 @@ public class AirportSim extends Engine {
             }
         }
     }
-
 
     @Override
     public void run() {

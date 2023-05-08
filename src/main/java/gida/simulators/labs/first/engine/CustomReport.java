@@ -1,5 +1,7 @@
 package gida.simulators.labs.first.engine;
 
+import java.text.DecimalFormat;
+
 public class CustomReport implements Reportable {
 
     private double totalIdleTime, totalQueueTime,maxIdleTime,maxQueueTime,totalTransitTime,maxTransitTime,lastClock;
@@ -9,13 +11,14 @@ public class CustomReport implements Reportable {
     private int entityAmount;
     @Override
     public void generateReport() {
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
         // TODO Auto-generated method stub
         System.out.println("Reporte simulacion:");
         System.out.println("El tiempo maximo de Espera es: "+this.getMaxQueueTime()+"\tEl tiempo maximo de transito es: "+this.getMaxTransitTime());
         System.out.println("El tiempo total de Espera es: "+this.totalQueueTime+"\tEl tiempo total de transito es: "+this.totalTransitTime);
         System.out.println("El tiempo medio de Espera es: "+(double)(this.totalQueueTime/this.entityAmount)+"\tEl tiempo medio de transito es: "+(double)(this.totalTransitTime/this.entityAmount));
-        System.out.println("El tiempo total de ocio es: "+this.totalIdleTime+" y representa el "+ ((this.totalIdleTime/this.lastClock)*100)+"% del tiempo total");
-        System.out.println("El tiempo maximo de ocio es: "+this.maxIdleTime+" y representa el "+((this.maxIdleTime/this.totalIdleTime)*100)+"% del tiempo de ocio total");
+        System.out.println("El tiempo total de ocio es: "+this.totalIdleTime+" y representa el "+ (decimalFormat.format((this.totalIdleTime/this.lastClock)*100))+"% del tiempo total");
+        System.out.println("El tiempo maximo de ocio es: "+this.maxIdleTime+" y representa el "+(decimalFormat.format((this.maxIdleTime/this.totalIdleTime)*100))+"% del tiempo de ocio total");
         //throw new UnsupportedOperationException("Unimplemented method 'generateReport'");
     }
 
