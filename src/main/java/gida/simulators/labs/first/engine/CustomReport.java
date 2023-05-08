@@ -14,6 +14,7 @@ public class CustomReport implements Reportable {
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
         // TODO Auto-generated method stub
         System.out.println("Reporte simulacion:");
+        System.out.println("La cantidad de aeronaves que aterrizaron son: "+this.entityAmount);
         System.out.println("El tiempo maximo de Espera es: "+this.getMaxQueueTime()+"\tEl tiempo maximo de transito es: "+this.getMaxTransitTime());
         System.out.println("El tiempo total de Espera es: "+this.totalQueueTime+"\tEl tiempo total de transito es: "+this.totalTransitTime);
         System.out.println("El tiempo medio de Espera es: "+(double)(this.totalQueueTime/this.entityAmount)+"\tEl tiempo medio de transito es: "+(double)(this.totalTransitTime/this.entityAmount));
