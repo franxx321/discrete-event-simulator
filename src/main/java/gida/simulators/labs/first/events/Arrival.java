@@ -51,7 +51,7 @@ public class Arrival extends Event {
             report.sumIdletime(idletime);
             fel.insert(new EndOfService((this.getClock() + endOfServiceBehavior.nextTime()), this.getEntity(), endOfServiceBehavior,this.report));
         }
-        Aircraft aircraft = new Aircraft(this.getEntity().getId() + 1);
+        Aircraft aircraft =((Aircraft)this.getEntity()).getNextAircraft();
         Arrival event = new Arrival((this.getClock() + this.getBehavior().nextTime()), aircraft, this.getBehavior(), this.endOfServiceBehavior, this.policy,this.report);
         aircraft.addEvent(event);
         fel.insert(event);

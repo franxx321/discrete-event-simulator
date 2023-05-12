@@ -20,6 +20,7 @@ public class CustomReport implements Reportable {
         System.out.println("El tiempo medio de Espera es: "+(double)(this.totalQueueTime/this.entityAmount)+"\tEl tiempo medio de transito es: "+(double)(this.totalTransitTime/this.entityAmount));
         System.out.println("El tiempo total de ocio es: "+this.totalIdleTime+" y representa el "+ (decimalFormat.format((this.totalIdleTime/this.lastClock)*100))+"% del tiempo total");
         System.out.println("El tiempo maximo de ocio es: "+this.maxIdleTime+" y representa el "+(decimalFormat.format((this.maxIdleTime/this.totalIdleTime)*100))+"% del tiempo de ocio total");
+        System.out.println("El tamaño maximo de la cola de espera es: "+this.maxServerQueueLength);
         //throw new UnsupportedOperationException("Unimplemented method 'generateReport'");
     }
 

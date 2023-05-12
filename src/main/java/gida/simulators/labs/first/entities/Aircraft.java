@@ -2,7 +2,7 @@ package gida.simulators.labs.first.entities;
 
 import gida.simulators.labs.first.events.Arrival;
 
-public class Aircraft extends Entity {
+public abstract class Aircraft extends Entity {
 
     public Aircraft(int id, Arrival arrival) {
         super(id, arrival);
@@ -10,6 +10,8 @@ public class Aircraft extends Entity {
     public Aircraft(int id){
         super(id);
     }
+
+    public abstract  Aircraft getNextAircraft();
 
     @Override
     public String toString() {

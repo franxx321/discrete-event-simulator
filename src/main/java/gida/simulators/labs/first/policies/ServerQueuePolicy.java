@@ -12,7 +12,7 @@ public interface ServerQueuePolicy {
      * @param queues the queues to be checked.
      * @return true if there is some entity waiting on some of the queues.
      */
-    //boolean queuesEmpty(List<Queue> queues);
+ //   boolean queuesEmpty(List<Queue> queues);
 
     /**
      * queues an entity using the underlying policy implementation.
