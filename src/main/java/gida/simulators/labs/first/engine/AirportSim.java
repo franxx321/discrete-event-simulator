@@ -2,8 +2,7 @@ package gida.simulators.labs.first.engine;
 
 import java.util.List;
 
-import gida.simulators.labs.first.behaviors.ArrivalBehavior;
-import gida.simulators.labs.first.behaviors.EndOfServiceBehavior;
+import gida.simulators.labs.first.behaviors.*;
 import gida.simulators.labs.first.entities.Aircraft;
 import gida.simulators.labs.first.entities.HeavyAircraft;
 import gida.simulators.labs.first.entities.LightAircraft;
@@ -56,17 +55,17 @@ public class AirportSim extends Engine {
         this.report=report;
         this.fel =new FutureEventList();
         this.fel.insert(new StopSimulation(endClock,this));
-        Aircraft aircraft=new LightAircraft(1);
-        Arrival event= new Arrival(0,aircraft,new ArrivalBehavior(arrivalRandomizer),new EndOfServiceBehavior(endOfServiceRandomizer),policy,report);
+        Aircraft aircraft=new LightAircraft(1, new LAAB(),new LAEoSB());
+        Arrival event= new Arrival(0,aircraft,policy,report);
         aircraft.addEvent(event);
         this.fel.insert(event);
         //TODO Change behaviors
-        Aircraft aircraft1 = new MediumAircraft(1);
-        Arrival event1= new Arrival(0, aircraft1, new ArrivalBehavior(arrivalRandomizer), new EndOfServiceBehavior(endOfServiceRandomizer), policy, report);
+        Aircraft aircraft1 = new MediumAircraft(2,new MAAB(),new MAEoSB());
+        Arrival event1= new Arrival(0, aircraft1, policy, report);
         aircraft1.addEvent(event1);
         this.fel.insert(event1);
-        Aircraft aircraft2 = new HeavyAircraft(1);
-        Arrival event2 = new Arrival(0, aircraft2, new ArrivalBehavior(arrivalRandomizer), new EndOfServiceBehavior(endOfServiceRandomizer), policy, report);
+        Aircraft aircraft2 = new HeavyAircraft(3,new HAAB(), new HAEoSB());
+        Arrival event2 = new Arrival(0, aircraft2, policy, report);
         aircraft2.addEvent(event2);
         this.fel.insert(event2);
         this.endClock=endClock;

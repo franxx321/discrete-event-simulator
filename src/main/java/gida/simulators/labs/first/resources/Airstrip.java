@@ -3,7 +3,9 @@ package gida.simulators.labs.first.resources;
 import java.util.List;
 import gida.simulators.labs.first.policies.ServerQueuePolicy;
 
-public class Airstrip extends Server {
+public abstract class Airstrip extends Server {
+
+    float durability;
 
     private double lastIdleStartTime;
 
@@ -30,5 +32,13 @@ public class Airstrip extends Server {
         ret += "type: airstrip";
 
         return ret;
+    }
+
+    public float getDurability() {
+        return durability;
+    }
+
+    public void setDurability(float durability) {
+        this.durability = durability;
     }
 }

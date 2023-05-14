@@ -13,7 +13,7 @@ public class StopSimulation extends Event {
     private final int ORDER=1;
 
     public StopSimulation(double clock, AirportSim engine) {
-        super(clock, null,null,1);
+        super(clock, null, 1);
         this.engine=engine;
 
     }

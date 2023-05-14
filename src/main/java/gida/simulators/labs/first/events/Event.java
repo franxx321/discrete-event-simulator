@@ -16,21 +16,19 @@ public abstract class Event {
     private final Entity entity;
     private final int order;
 
-    private final Behavior behavior;
 
     /**
      * construct the event for the simulation.
      *
      * @param clock the time when it occurs
      * @param entity the entity in which the event occurs
-     * @param behavior the behavior that mathematically specifies the occurrence time
+
      * @param order the value that resolves the order when the occurrence times of two events are
      *        equal
      */
-    public Event(double clock, Entity entity, Behavior behavior, int order) {
+    public Event(double clock, Entity entity, int order) {
         this.clock = clock;
         this.entity = entity;
-        this.behavior = behavior;
         this.order = order;
     }
 
@@ -46,9 +44,6 @@ public abstract class Event {
         return this.order;
     }
 
-    public Behavior getBehavior() {
-        return this.behavior;
-    }
 
     /**
      * planificates the next event using the bootstrapring technique

@@ -17,17 +17,15 @@ public class Arrival extends Event {
 
     private ServerSelectionPolicy policy;
 
-    private EndOfServiceBehavior endOfServiceBehavior;
 
     private CustomReport report;
 
 
 
 
-    public Arrival(double clock, Entity entity, Behavior behavior,
-                   EndOfServiceBehavior endOfServiceBehavior, ServerSelectionPolicy policy, CustomReport report) {
-        super(clock,entity,behavior,2);
-        this.endOfServiceBehavior=endOfServiceBehavior;
+    public Arrival(double clock, Entity entity,
+                    ServerSelectionPolicy policy, CustomReport report) {
+        super(clock,entity,2);
         this.policy=policy;
         this.report=report;
     }
@@ -49,10 +47,10 @@ public class Arrival extends Event {
                 report.setMaxIdleTime(idletime);
             }
             report.sumIdletime(idletime);
-            fel.insert(new EndOfService((this.getClock() + endOfServiceBehavior.nextTime()), this.getEntity(), endOfServiceBehavior,this.report));
+            fel.insert(new EndOfService((this.getClock() + ((Aircraft)this.getEntity()).getNextEoSTime()), this.getEntity(), this.report));
         }
         Aircraft aircraft =((Aircraft)this.getEntity()).getNextAircraft();
-        Arrival event = new Arrival((this.getClock() + this.getBehavior().nextTime()), aircraft, this.getBehavior(), this.endOfServiceBehavior, this.policy,this.report);
+        Arrival event = new Arrival((this.getClock() + ((Aircraft)this.getEntity()).getNextArrivalTime()), aircraft, this.policy,this.report);
         aircraft.addEvent(event);
         fel.insert(event);
     }

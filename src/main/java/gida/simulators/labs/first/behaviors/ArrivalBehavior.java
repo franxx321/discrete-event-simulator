@@ -3,7 +3,7 @@ package gida.simulators.labs.first.behaviors;
 import gida.simulators.labs.first.utils.Randomizer;
 import gida.simulators.labs.first.utils.distributions.Distribution;
 
-public class ArrivalBehavior implements Behavior {
+public abstract class ArrivalBehavior implements Behavior {
 
     private Randomizer randomizer;
     private Distribution<Double> distribution;
