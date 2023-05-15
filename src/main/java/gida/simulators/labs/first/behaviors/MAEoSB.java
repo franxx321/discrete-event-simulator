@@ -2,8 +2,9 @@ package gida.simulators.labs.first.behaviors;
 import gida.simulators.labs.first.utils.Randomizer;
 
 public class MAEoSB implements Behavior {
-
+    Randomizer randomizer;
     //TOIMPLEMENT
+
     @Override
     public double nextTime(double clock) {
 
