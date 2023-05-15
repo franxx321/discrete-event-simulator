@@ -1,8 +1,11 @@
 package gida.simulators.labs.first.entities;
 
 import gida.simulators.labs.first.behaviors.Behavior;
+import gida.simulators.labs.first.resources.Airstrip;
+import gida.simulators.labs.first.utils.Randomizer;
 
-public class MediumAircraft  extends Aircraft{
+public class MediumAircraft extends Aircraft{
+    Randomizer randomizer;
     public MediumAircraft(int id, Behavior arrivalBehaviour, Behavior endOfServiceBehaviour) {
         super(id,arrivalBehaviour,endOfServiceBehaviour);
     }
@@ -15,6 +18,13 @@ public class MediumAircraft  extends Aircraft{
         return m;
     }
 
-
+    @Override
+    public void applyWhere(Airstrip airstrip){
+        float d = airstrip.getDurability();
+        float acum;
+        acum = 4 * (float) randomizer.nextRandom();
+        d-=acum;
+        airstrip.setDurability(d);
+    }
 
 }

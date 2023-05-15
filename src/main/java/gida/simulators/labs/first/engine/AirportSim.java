@@ -72,8 +72,7 @@ public class AirportSim extends Engine {
     }
 
     private void sumRemainingIdleTime(List<Server> servers,CustomReport report,double endClock){
-        for (Server server:servers
-             ) {
+        for (Server server:servers) {
             if(!(server.isBusy())){
                 double idleTime= (endClock-((Airstrip)server).getLastIdleStartTime());
                 report.sumIdletime(idleTime);

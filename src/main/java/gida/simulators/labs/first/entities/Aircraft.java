@@ -4,13 +4,12 @@ import gida.simulators.labs.first.behaviors.ArrivalBehavior;
 import gida.simulators.labs.first.behaviors.Behavior;
 import gida.simulators.labs.first.behaviors.EndOfServiceBehavior;
 import gida.simulators.labs.first.events.Arrival;
+import gida.simulators.labs.first.resources.Airstrip;
 
 public abstract class Aircraft extends Entity {
 
     private Behavior arrivalBehavior;
     private Behavior endOfServiceBehavior;
-
-
 
     public Aircraft(int id, Arrival arrival) {
         super(id, arrival);
@@ -50,6 +49,8 @@ public abstract class Aircraft extends Entity {
     public void setEndOfServiceBehavior(EndOfServiceBehavior endOfServiceBehavior) {
         this.endOfServiceBehavior = endOfServiceBehavior;
     }
+
+    public abstract void applyWhere(Airstrip airstrip);
 
     @Override
     public String toString() {

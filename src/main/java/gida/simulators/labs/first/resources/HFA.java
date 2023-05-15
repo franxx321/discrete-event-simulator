@@ -9,6 +9,7 @@ public class HFA extends Airstrip {
         super(id, queues, serverQueuePolicy);
         this.setDurability(5000);
     }
+
     /*CDESC Heavy Flight Airstrip, extends Airstrip.
     *  Destined for heavy flight planes*/
 }

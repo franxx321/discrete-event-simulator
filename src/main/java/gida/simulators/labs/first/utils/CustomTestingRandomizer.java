@@ -1,32 +1,37 @@
 package gida.simulators.labs.first.utils;
 import java.util.ArrayList;
 
-public abstract class CustomTestingRandomizer implements Randomizer {
+public class CustomTestingRandomizer implements Randomizer {
 
     private ArrayList<Double> randoms;
 
     private int counter;
 
-    public CustomTestingRandomizer(){
-        this.counter=0;
+    public CustomTestingRandomizer(int a){
         randoms=new ArrayList<>();
+        this.counter=0;
+        if(a==1){
+            for (int i = 0; i <10 ; i++) {
+                randoms.add(0.4);
+                randoms.add(0.2);
+            }
+        } else if (a==2) {
+            for (int i = 0; i <10 ; i++) {
+                randoms.add(0.4);
+                randoms.add(0.5);
+            }
+        } else if (a==3) {
+            for (int i = 0; i <10 ; i++) {
+                randoms.add(0.5);
+                randoms.add(0.2);
+            }
+        }
     }
 
-    public ArrayList<Double> getRandoms() {
-        return randoms;
+    @Override
+    public double nextRandom() {
+        double ret=randoms.get(counter);
+        counter++;
+        return ret;
     }
-
-    public void setRandoms(ArrayList<Double> randoms) {
-        this.randoms = randoms;
-    }
-
-    public int getCounter() {
-        return counter;
-    }
-
-    public void sumCounter() {
-        this.counter++;
-    }
-
-
 }
