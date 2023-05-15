@@ -23,13 +23,13 @@ public abstract class Aircraft extends Entity {
 
     public abstract  Aircraft getNextAircraft();
 
-    public  double getNextArrivalTime(){
-       double ret = this.arrivalBehavior.nextTime();
+    public  double getNextArrivalTime(double clock){
+       double ret = this.arrivalBehavior.nextTime( clock);
        return ret;
     }
 
-    public  double getNextEoSTime(){
-        double ret=this.endOfServiceBehavior.nextTime();
+    public  double getNextEoSTime(double clock){
+        double ret=this.endOfServiceBehavior.nextTime(clock);
         return ret;
 
 

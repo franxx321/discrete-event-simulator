@@ -8,5 +8,5 @@ public interface Behavior {
      * 
      * @return the value for that time span
      */
-    double nextTime();
+    double nextTime(double clock);
 }

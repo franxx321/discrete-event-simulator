@@ -1,6 +1,10 @@
 package gida.simulators.labs.first.behaviors;
 
+import gida.simulators.labs.first.utils.Randomizer;
+import java.lang.Math.*;
+
 public class HAAB implements Behavior {
+    Randomizer randomizer;
 
     //TOIMPLEMENT
     @Override

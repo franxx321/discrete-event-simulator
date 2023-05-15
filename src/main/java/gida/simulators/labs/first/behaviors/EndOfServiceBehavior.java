@@ -18,7 +18,7 @@ public class EndOfServiceBehavior implements Behavior {
      * 
      */
     @Override
-    public double nextTime() {
+    public double nextTime(double clock) {
         double ret;
         double r= randomizer.nextRandom();
         if (r<=0.1){
