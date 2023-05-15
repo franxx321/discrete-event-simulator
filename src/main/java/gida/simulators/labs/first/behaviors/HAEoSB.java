@@ -1,8 +1,10 @@
 package gida.simulators.labs.first.behaviors;
 
-public class HAEoSB implements Behavior {
+import gida.simulators.labs.first.utils.Randomizer;
 
-    //TOIMPLEMENT
+public class HAEoSB implements Behavior {
+    Randomizer randomizer;
+
     @Override
     public double nextTime(double clock) {
         double random = randomizer.nextRandom();
@@ -14,5 +16,6 @@ public class HAEoSB implements Behavior {
         }
         return ret;
     }
+
     //CDESC Heavy Aircraft End of Service Behaviour, implements End of Service Behaviour
 }

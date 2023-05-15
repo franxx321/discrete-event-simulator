@@ -1,8 +1,10 @@
 package gida.simulators.labs.first.behaviors;
 
-public class LAAB implements Behavior {
+import gida.simulators.labs.first.utils.Randomizer;
 
-    //TOIMPLEMENT
+public class LAAB implements Behavior {
+    Randomizer randomizer;
+
     @Override
     public double nextTime(double clock) {
         double ret;
