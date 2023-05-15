@@ -7,13 +7,8 @@ public class MAEoSB implements Behavior {
 
     @Override
     public double nextTime(double clock) {
-
-            double ret = 0;
-            int n=24;
-            for (int i=0;i<n;i++){
-                ret+= 20 * randomizer.nextRandom();
-            }
-
+            double ret =0;
+            ret+= 20 * randomizer.nextRandom();
             return ret;
     }
     //CDESC Medium Aircraft End of Service Behaviour, implements End of Service Behaviour

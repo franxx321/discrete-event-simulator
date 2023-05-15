@@ -19,7 +19,14 @@ public class LightAircraft extends Aircraft {
         return l;
     }
 
-
+    @Override
+    public void applyWhere(Airstrip airstrip){
+        float d = airstrip.getDurability();
+        float acum;
+        acum = 6 * (float) randomizer.nextRandom();
+        d-=acum;
+        airstrip.setDurability(d);
+    }
 
 
 
