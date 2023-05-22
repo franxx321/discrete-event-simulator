@@ -14,7 +14,7 @@ public class MediumAircraft extends Aircraft{
     //TOIMPLEMENT
 
     @Override
-    public Aircraft getNextAircraft() {
+    public Entity getNextEntity() {
         MediumAircraft m = new MediumAircraft(this.getId()+1,this.getArrivalBehavior(),this.getEndOfServiceBehavior());
         return m;
     }

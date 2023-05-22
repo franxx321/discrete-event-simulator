@@ -18,7 +18,7 @@ public class HeavyAircraft extends Aircraft {
     }
 
     @Override
-    public Aircraft getNextAircraft() {
+    public Entity getNextEntity() {
         HeavyAircraft h = new HeavyAircraft(this.getId()+1,this.getArrivalBehavior(),this.getEndOfServiceBehavior());
         return h;
     }

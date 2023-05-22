@@ -15,7 +15,7 @@ public class LightAircraft extends Aircraft {
 
     //TOIMPLEMENT
     @Override
-    public Aircraft getNextAircraft() {
+    public Entity getNextEntity() {
         LightAircraft l = new LightAircraft(this.getId()+1,this.getArrivalBehavior(),this.getEndOfServiceBehavior());
         return l;
     }
