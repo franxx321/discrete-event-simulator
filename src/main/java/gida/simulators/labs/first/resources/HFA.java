@@ -6,7 +6,7 @@ import java.util.List;
 
 public class HFA extends Airstrip {
     public HFA(int id, List<Queue> queues, ServerQueuePolicy serverQueuePolicy) {
-        super(id, queues, serverQueuePolicy);
+        super(id, queues, serverQueuePolicy,5000);
         this.setDurability(5000);
     }
 

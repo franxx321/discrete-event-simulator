@@ -1,5 +1,6 @@
 package gida.simulators.labs.first.entities;
 import gida.simulators.labs.first.resources.Airstrip;
+import gida.simulators.labs.first.resources.Server;
 import gida.simulators.labs.first.utils.Randomizer;
 
 import gida.simulators.labs.first.behaviors.ArrivalBehavior;
@@ -23,10 +24,11 @@ public class HeavyAircraft extends Aircraft {
     }
 
     @Override
-    public void applyWhere(Airstrip airstrip){
+    public void applyEffect(Server server){
+        Airstrip airstrip = (Airstrip)server;
         float d = airstrip.getDurability();
         float acum;
-        acum = (float) randomizer.nextRandom();
+        acum = 6 * (float) randomizer.nextRandom();
         d-=acum;
         airstrip.setDurability(d);
     }

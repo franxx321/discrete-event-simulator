@@ -4,6 +4,7 @@ import gida.simulators.labs.first.behaviors.ArrivalBehavior;
 import gida.simulators.labs.first.behaviors.Behavior;
 import gida.simulators.labs.first.behaviors.EndOfServiceBehavior;
 import gida.simulators.labs.first.resources.Airstrip;
+import gida.simulators.labs.first.resources.Server;
 import gida.simulators.labs.first.utils.Randomizer;
 
 public class LightAircraft extends Aircraft {
@@ -20,10 +21,11 @@ public class LightAircraft extends Aircraft {
     }
 
     @Override
-    public void applyWhere(Airstrip airstrip){
+    public void applyEffect(Server server){
+        Airstrip airstrip = (Airstrip)server;
         float d = airstrip.getDurability();
         float acum;
-        acum = 6 * (float) randomizer.nextRandom();
+        acum = (float) randomizer.nextRandom();
         d-=acum;
         airstrip.setDurability(d);
     }

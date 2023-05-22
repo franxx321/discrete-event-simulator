@@ -31,13 +31,14 @@ public class EndOfService extends Event {
             Entity currentEntity= currentQueue.dequeue();
             server.setCurrentEntity(currentEntity);
             currentEntity.setServer(server);
-            fel.insert(new EndOfService((this.getClock()+((Aircraft)this.getEntity()).getNextEoSTime()),currentEntity,this.report));
+            fel.insert(new EndOfService((this.getClock()+((Aircraft)this.getEntity()).getNextEoSTime(this.getClock())),currentEntity,this.report));
             double queuetime = this.getClock() - currentEntity.getArrival().getClock();
             if(queuetime>report.getMaxQueueTime()){
                 report.setMaxQueueTime(queuetime);
             }
             report.sumQueuetime(queuetime);
         }
+
         double transitTime=this.getClock()-this.getEntity().getArrival().getClock();
         report.sumTransitTime(transitTime);
         if(transitTime>report.getMaxTransitTime()){

@@ -9,7 +9,7 @@ public class MFA extends Airstrip {
     *  Destined for Medium Airplanes*/
 
     public MFA(int id, List<Queue> queues, ServerQueuePolicy serverQueuePolicy) {
-        super(id, queues, serverQueuePolicy);
+        super(id, queues, serverQueuePolicy,3000);
         this.setDurability(3000);
     }
 }

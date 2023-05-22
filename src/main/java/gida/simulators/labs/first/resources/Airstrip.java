@@ -7,14 +7,21 @@ public abstract class Airstrip extends Server {
 
     float durability;
 
+    private final float maxDurability;
+
+
     private double lastIdleStartTime;
 
-    public Airstrip() {
+    public Airstrip(float maxDurability) {
         super();
+        this.maxDurability = maxDurability;
     }
 
-    public Airstrip(int id, List<Queue> queues, ServerQueuePolicy serverQueuePolicy) {
+
+
+    public Airstrip(int id, List<Queue> queues, ServerQueuePolicy serverQueuePolicy, float maxDurability) {
         super(id,queues,serverQueuePolicy);
+        this.maxDurability=maxDurability;
     }
 
     public double getLastIdleStartTime() {
@@ -38,7 +45,13 @@ public abstract class Airstrip extends Server {
         return durability;
     }
 
+
+
     public void setDurability(float durability) {
         this.durability = durability;
+    }
+
+    public float getMaxDurability() {
+        return maxDurability;
     }
 }

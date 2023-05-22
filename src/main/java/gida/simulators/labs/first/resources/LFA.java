@@ -9,7 +9,7 @@ public class LFA extends Airstrip {
     *  Destined for heavy flight airplanes*/
 
     public LFA(int id, List<Queue> queues, ServerQueuePolicy serverQueuePolicy) {
-        super(id, queues, serverQueuePolicy);
+        super(id, queues, serverQueuePolicy,1000);
         this.setDurability(1000);
     }
 }
