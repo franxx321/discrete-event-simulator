@@ -15,4 +15,6 @@ public interface Queue {
     Entity checkNext();
 
     Entity dequeue();
+
+    Entity checkLast();
 }

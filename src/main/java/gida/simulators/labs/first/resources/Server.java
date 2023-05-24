@@ -2,6 +2,7 @@ package gida.simulators.labs.first.resources;
 
 import java.util.List;
 import gida.simulators.labs.first.entities.Entity;
+import gida.simulators.labs.first.entities.MaintenanceCrew;
 import gida.simulators.labs.first.policies.ServerQueuePolicy;
 
 public abstract class Server {
@@ -57,6 +58,12 @@ public abstract class Server {
     public Queue getQueue(){
         return this.policy.getQueue(this.queues);
     }
+
+    public List<Queue> getQueues(){
+        return this.queues;
+    }
+
+
 
     @Override
     public String toString() {

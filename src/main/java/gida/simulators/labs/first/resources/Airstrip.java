@@ -1,6 +1,8 @@
 package gida.simulators.labs.first.resources;
 
 import java.util.List;
+
+import gida.simulators.labs.first.entities.MaintenanceCrew;
 import gida.simulators.labs.first.policies.ServerQueuePolicy;
 
 public abstract class Airstrip extends Server {
@@ -54,4 +56,28 @@ public abstract class Airstrip extends Server {
     public float getMaxDurability() {
         return maxDurability;
     }
+
+    public boolean expectingMaintenance() {
+        boolean ret=false;
+        try{
+            if(this.getCurrentEntity() instanceof MaintenanceCrew){
+                ret=false;
+            }
+            else {
+                for (Queue queue:this.getQueues()) {
+                    if (queue.checkLast() instanceof MaintenanceCrew){
+                        return true;
+                    }
+                }
+            }
+        }
+        catch (NullPointerException nullPointerException){
+            ret=true;
+        }
+        finally {
+            return ret;
+        }
+
+    }
+
 }

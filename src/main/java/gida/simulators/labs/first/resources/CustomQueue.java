@@ -49,6 +49,11 @@ public class CustomQueue implements Queue {
     }
 
     @Override
+    public Entity checkLast() {
+        return this.queue.get(this.queue.size()-1);
+    }
+
+    @Override
     public String toString() {
         return "id: " + this.id + " -> " + this.queue.toString();
     }
