@@ -36,32 +36,6 @@ public class CustomReport implements Reportable {
 
     private HashMap<String , HashMap<String,HashMap<String,Double>>> data;
 
-    private final String light = "LightAircraft";
-
-    private final String medium = "MediumAircraft";
-
-    private final String heavy = "HeavyAircraft";
-
-    private final String general ="General";
-
-    private final String[] aircrafts = {light,medium,heavy,general};
-
-    private final String idle = "IdleTime";
-
-    private final String transit = "TransitTimer";
-
-    private final String queue = "QueueTime";
-
-    private final String[] times = {idle,transit,queue};
-
-    private final String max ="Max";
-
-    private final String cumulative= "Cumulative";
-
-    private final String[] type = {max,cumulative};
-
-    private HashMap<String , HashMap<String,HashMap<String,Double>>> data;
-
     private double totalIdleTime, totalQueueTime,maxIdleTime,maxQueueTime,totalTransitTime,maxTransitTime,lastClock;
 
     private int maxServerQueueLength;
