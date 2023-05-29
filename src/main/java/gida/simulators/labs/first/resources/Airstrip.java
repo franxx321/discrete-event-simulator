@@ -72,12 +72,11 @@ public abstract class Airstrip extends Server {
             }
         }
         catch (NullPointerException nullPointerException){
-            ret=true;
+            ret=false;
         }
         finally {
             return ret;
         }
 
     }
-
 }

@@ -1,6 +1,12 @@
 package gida.simulators.labs.first.engine;
 
+import gida.simulators.labs.first.entities.*;
+import gida.simulators.labs.first.events.Event;
+import gida.simulators.labs.first.resources.Queue;
+import gida.simulators.labs.first.resources.Server;
+
 import java.text.DecimalFormat;
+import java.util.HashMap;
 
 public class CustomReport implements Reportable {
 
@@ -24,6 +30,72 @@ public class CustomReport implements Reportable {
         //throw new UnsupportedOperationException("Unimplemented method 'generateReport'");
     }
 
+    @Override
+    public void calculateQueueTime(Event event, Entity entity) {
+        double queueTime = event.getClock()-entity.getArrival().getClock();
+        if(!(entity instanceof MaintenanceCrew)){
+
+            if(queueTime > data.get(general).get(queue).get(max)) {
+                data.get(general).get(queue).put(max,queueTime);
+            }
+            data.get(general).get(queue).merge(cumulative,queueTime, Double::sum);
+        }
+          if(entity instanceof LightAircraft){
+                if(queueTime > data.get(light).get(queue).get(max)) {
+                        data.get(light).get(queue).put(max,queueTime);
+                        }
+                    data.get(light).get(queue).merge(cumulative,queueTime, Double::sum);
+        } else if(entity instanceof MediumAircraft) {
+                    if(queueTime > data.get(medium).get(queue).get(max)) {
+                        data.get(medium).get(queue).put(max,queueTime);
+                        }
+                    data.get(medium).get(queue).merge(cumulative,queueTime, Double::sum);
+
+        }else if(entity instanceof HeavyAircraft){
+                    if(queueTime > data.get(heavy).get(queue).get(max)) {
+                        data.get(heavy).get(queue).put(max,queueTime);
+                        }
+                    data.get(heavy).get(queue).merge(cumulative,queueTime, Double::sum);
+              }
+    }
+
+    @Override
+    public void calculateTransitTime(Event event) {
+        double transitTime = event.getClock()-event.getEntity().getArrival().getClock();
+        if(!(event.getEntity() instanceof MaintenanceCrew)){
+
+                    if(transitTime > data.get(general).get(transit).get(max)) {
+                        data.get(general).get(transit).put(max,transitTime);
+                    }
+                    data.get(general).get(queue).merge(cumulative,queueTime, Double::sum);
+                }
+
+
+
+
+
+    }
+
+    @Override
+    public void calculateIdleTime(Server server, Event event) {
+            if
+    }
+
+    @Override
+    public void calculateQueueLength(Queue queue) {
+        int queueSize  = queue.getSize();
+        if (queueSize> this.maxServerQueueLength){
+            this.maxServerQueueLength=queueSize;
+        }
+
+    }
+
+    @Override
+    public void addEntityAmount() {
+        this.entityAmount++;
+    }
+
+
     public double getIdletime() {
         return this.totalIdleTime;
     }
@@ -44,9 +116,6 @@ public class CustomReport implements Reportable {
         return entityAmount;
     }
 
-    public void addEntityAmount() {
-        this.entityAmount ++;
-    }
 
     public double getMaxIdleTime() {
         return this.maxIdleTime;

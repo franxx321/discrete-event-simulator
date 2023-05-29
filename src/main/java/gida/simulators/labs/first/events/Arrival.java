@@ -5,6 +5,7 @@ import gida.simulators.labs.first.behaviors.ArrivalBehavior;
 import gida.simulators.labs.first.behaviors.EndOfServiceBehavior;
 import gida.simulators.labs.first.engine.CustomReport;
 import gida.simulators.labs.first.engine.FutureEventList;
+import gida.simulators.labs.first.engine.Reportable;
 import gida.simulators.labs.first.entities.Aircraft;
 import gida.simulators.labs.first.policies.ServerSelectionPolicy;
 import gida.simulators.labs.first.resources.Airstrip;
@@ -18,7 +19,7 @@ public class Arrival extends Event {
     private ServerSelectionPolicy policy;
 
 
-    private CustomReport report;
+    private Reportable report;
 
 
 
@@ -36,17 +37,12 @@ public class Arrival extends Event {
         if (server.isBusy()) {
             Queue currentqueue=server.getQueue();
             currentqueue.enqueue(this.getEntity());
-            if(currentqueue.getSize()>report.getMaxServerQueueLength()){
-                report.setMaxServerQueueLength(currentqueue.getSize());
-            }
+            this.report.calculateQueueLength(currentqueue);
         } else {
             server.setCurrentEntity(this.getEntity());
             this.getEntity().setServer(server);
             double idletime = (this.getClock() - ((Airstrip) server).getLastIdleStartTime());
-            if (idletime>report.getMaxIdleTime()){
-                report.setMaxIdleTime(idletime);
-            }
-            report.sumIdletime(idletime);
+            this.report.calculateIdleTime(server,this);
             fel.insert(new EndOfService((this.getClock() + ((Aircraft)this.getEntity()).getNextEoSTime(this.getClock())), this.getEntity(), this.report));
         }
         Entity newEntity =this.getEntity().getNextEntity();
