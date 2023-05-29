@@ -25,7 +25,7 @@ public class Arrival extends Event {
 
 
     public Arrival(double clock, Entity entity,
-                    ServerSelectionPolicy policy, CustomReport report) {
+            ServerSelectionPolicy policy, Reportable report) {
         super(clock,entity,2);
         this.policy=policy;
         this.report=report;
