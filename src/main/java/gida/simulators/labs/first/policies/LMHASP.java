@@ -88,6 +88,7 @@ public class LMHASP implements ServerSelectionPolicy {
 
             }
         }
+        //IMPORTANTE Check this condition (i believe that it is reduntant with the first if in selectServer)
         if(ret.getId()==heavyAirstrips.get(0).getId()&& ((Airstrip)ret).expectingMaintenance()){
             ret=null;
         }
