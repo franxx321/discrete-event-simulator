@@ -61,7 +61,7 @@ public abstract class Airstrip extends Server {
         boolean ret=false;
         try{
             if(this.getCurrentEntity() instanceof MaintenanceCrew){
-                ret=false;
+                ret=true;
             }
             else {
                 for (Queue queue:this.getQueues()) {

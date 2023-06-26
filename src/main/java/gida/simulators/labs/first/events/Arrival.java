@@ -37,16 +37,16 @@ public class Arrival extends Event {
         if (server.isBusy()) {
             Queue currentqueue=server.getQueue();
             currentqueue.enqueue(this.getEntity());
-            this.report.calculateQueueLength(currentqueue);
+            this.report.calculateQueueLength(currentqueue,server);
         } else {
             server.setCurrentEntity(this.getEntity());
             this.getEntity().setServer(server);
             double idletime = (this.getClock() - ((Airstrip) server).getLastIdleStartTime());
             this.report.calculateIdleTime(server,this);
-            fel.insert(new EndOfService((this.getClock() + ((Aircraft)this.getEntity()).getNextEoSTime(this.getClock())), this.getEntity(), this.report));
+            fel.insert(new EndOfService((this.getClock() + (this.getEntity()).getNextEoSTime(this.getClock())), this.getEntity(), this.report));
         }
         Entity newEntity =this.getEntity().getNextEntity();
-        Arrival event = new Arrival((this.getClock() + ((Aircraft)this.getEntity()).getNextArrivalTime(this.getClock())), newEntity, this.policy,this.report);
+        Arrival event = new Arrival((this.getClock() + (this.getEntity()).getNextArrivalTime(this.getClock())), newEntity, this.policy,this.report);
         newEntity.addEvent(event);
         fel.insert(event);
     }

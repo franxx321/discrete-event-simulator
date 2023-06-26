@@ -59,6 +59,7 @@ public abstract class Entity {
 
     public  double getNextEoSTime(double clock){
         double ret=this.endOfServiceBehavior.nextTime(clock);
+        System.out.println("HERE!");
         return ret;
     }
 

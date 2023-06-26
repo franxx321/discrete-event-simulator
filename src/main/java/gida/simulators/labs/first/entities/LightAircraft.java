@@ -5,12 +5,14 @@ import gida.simulators.labs.first.behaviors.Behavior;
 import gida.simulators.labs.first.behaviors.EndOfServiceBehavior;
 import gida.simulators.labs.first.resources.Airstrip;
 import gida.simulators.labs.first.resources.Server;
+import gida.simulators.labs.first.utils.CustomRandomizer;
 import gida.simulators.labs.first.utils.Randomizer;
 
 public class LightAircraft extends Aircraft {
     Randomizer randomizer;
     public LightAircraft(int id, Behavior arrivalBehavior, Behavior endOfServiceBehavior) {
         super(id,arrivalBehavior,endOfServiceBehavior);
+        this.randomizer=new CustomRandomizer();
     }
 
     //TOIMPLEMENT

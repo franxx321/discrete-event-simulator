@@ -4,7 +4,13 @@ import gida.simulators.labs.first.utils.Randomizer;
 
 public class LAEoSB implements Behavior {
 
+    //CDESC Light Aircraft End of Service Behaviour, implements End of Service Behaviour
+
     Randomizer randomizer;
+
+    public LAEoSB(Randomizer randomizer) {
+        this.randomizer = randomizer;
+    }
 
     //TOIMPLEMENT
     @Override
@@ -21,5 +27,4 @@ public class LAEoSB implements Behavior {
         }
         return ret ;
     }
-    //CDESC Light Aircraft End of Service Behaviour, implements End of Service Behaviour
 }

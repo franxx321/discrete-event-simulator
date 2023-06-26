@@ -3,7 +3,12 @@ package gida.simulators.labs.first.behaviors;
 import gida.simulators.labs.first.utils.Randomizer;
 
 public class HAEoSB implements Behavior {
+    //CDESC Heavy Aircraft End of Service Behaviour, implements End of Service Behaviour
     Randomizer randomizer;
+
+    public HAEoSB(Randomizer randomizer) {
+        this.randomizer = randomizer;
+    }
 
     @Override
     public double nextTime(double clock) {
@@ -17,5 +22,5 @@ public class HAEoSB implements Behavior {
         return ret;
     }
 
-    //CDESC Heavy Aircraft End of Service Behaviour, implements End of Service Behaviour
+
 }

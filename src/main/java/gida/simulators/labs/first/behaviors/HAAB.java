@@ -4,7 +4,13 @@ import gida.simulators.labs.first.utils.Randomizer;
 import java.lang.Math.*;
 
 public class HAAB implements Behavior {
+
+    /*CDESC Heavy Aircraft Arrival Behaviour, implements behaviour.*/
     Randomizer randomizer;
+
+    public HAAB(Randomizer randomizer) {
+        this.randomizer = randomizer;
+    }
 
     @Override
     public double nextTime(double clock) {
@@ -27,5 +33,5 @@ public class HAAB implements Behavior {
         return ret;
     }
 
-    /*CDESC Heavy Aircraft Arrival Behaviour, implements behaviour.*/
+
 }

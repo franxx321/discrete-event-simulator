@@ -1,6 +1,7 @@
 package gida.simulators.labs.first.entities;
 import gida.simulators.labs.first.resources.Airstrip;
 import gida.simulators.labs.first.resources.Server;
+import gida.simulators.labs.first.utils.CustomRandomizer;
 import gida.simulators.labs.first.utils.Randomizer;
 
 import gida.simulators.labs.first.behaviors.ArrivalBehavior;
@@ -15,6 +16,7 @@ public class HeavyAircraft extends Aircraft {
 
     public HeavyAircraft(int id, Behavior arrivalBehavior, Behavior endOfServiceBehavior) {
         super(id,arrivalBehavior,endOfServiceBehavior);
+        this.randomizer=new CustomRandomizer();
     }
 
     @Override
@@ -28,7 +30,7 @@ public class HeavyAircraft extends Aircraft {
         Airstrip airstrip = (Airstrip)server;
         float d = airstrip.getDurability();
         float acum;
-        acum = 6 * (float) randomizer.nextRandom();
+        acum = (3 * (float) randomizer.nextRandom())+3;
         d-=acum;
         airstrip.setDurability(d);
     }

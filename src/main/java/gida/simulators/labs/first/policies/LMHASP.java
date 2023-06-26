@@ -17,7 +17,6 @@ public class LMHASP implements ServerSelectionPolicy {
         Server ret = null;
         if (entity instanceof MaintenanceCrew) {
             Airstrip airRet = (Airstrip) servers.get(0);
-
             for (Server server : servers) {
                 Airstrip airstrip = (Airstrip) server;
                 if ((airstrip.getDurability() / airstrip.getMaxDurability()) < (airRet.getDurability() / airRet.getMaxDurability())) {
@@ -26,11 +25,9 @@ public class LMHASP implements ServerSelectionPolicy {
             }
             ret = airRet;
             return ret;
-            //TODO terminar la politica
         } else {
             List<Server> correctTypeAirstrip = new ArrayList<>();
             if (entity instanceof HeavyAircraft) {
-
                 for (Server server : servers) {
                     if (server instanceof HFA) {
                         correctTypeAirstrip.add(server);
@@ -90,6 +87,9 @@ public class LMHASP implements ServerSelectionPolicy {
                 }
 
             }
+        }
+        if(ret.getId()==heavyAirstrips.get(0).getId()&& ((Airstrip)ret).expectingMaintenance()){
+            ret=null;
         }
         return ret;
 
