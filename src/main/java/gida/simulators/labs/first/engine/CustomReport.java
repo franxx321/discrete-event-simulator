@@ -56,11 +56,12 @@ public class CustomReport implements Reportable {
 
     private HashMap<Integer,HashMap<String,ArrayList<Double>>> replicationAirstripData;
 
-    private ArrayList<Double> replicationEntityAmount;
+    private HashMap<String,Double> entityAmount;
+
+    private HashMap<String,ArrayList<Double>> replicationEntityAmount;
 
     private double lastClock;
 
-    private int entityAmount;
 
     private final int replicationsAmount;
 
@@ -87,7 +88,7 @@ public class CustomReport implements Reportable {
     private void showresults(){
         System.out.println("Aircraft Data:\n");
         System.out.println("Aircraft Amount: ");
-        System.out.println("\t"+calculateMeanInterval(this.replicationEntityAmount)+"\n\n");
+        System.out.println("\t"+calculateMeanInterval(this.replicationEntityAmount.get(general))+"\n\n");
         for (String key1:aircrafts) {
             for (String key2: times) {
                 for (String key3:type){
@@ -112,7 +113,7 @@ public class CustomReport implements Reportable {
             for (String key2:times) {
                 for (String key3: type) {
                     if(key3.equals(mean)){
-                        replicationAircraftData.get(key1).get(key2).get(key3).add(aircraftData.get(key1).get(key2).get(key3)/this.entityAmount);
+                        replicationAircraftData.get(key1).get(key2).get(key3).add(aircraftData.get(key1).get(key2).get(key3)/this.entityAmount.get(key1));
                     }
                     else {
                         replicationAircraftData.get(key1).get(key2).get(key3).add(aircraftData.get(key1).get(key2).get(key3));
@@ -188,6 +189,15 @@ public class CustomReport implements Reportable {
         }
         replicationAirstripData= new HashMap<>();
         airstripData=new HashMap<>();
+        replicationEntityAmount = new HashMap<>();
+        for (String key:aircrafts) {
+            ArrayList<Double> currentList = new ArrayList<>();
+            replicationEntityAmount.put(key,currentList);
+        }
+        entityAmount= new HashMap<>();
+        for (String key:aircrafts) {
+            entityAmount.put(key,0.0);
+        }
     }
 
     @Override
@@ -291,8 +301,20 @@ public class CustomReport implements Reportable {
     }
 
     @Override
-    public void addEntityAmount() {
-        this.entityAmount++;
+    public void addEntityAmount(Entity entity) {
+        if(!(entity instanceof MaintenanceCrew)){
+        this.entityAmount.merge(general,1.0,Double::sum);
+        }
+        if(entity instanceof HeavyAircraft){
+            this.entityAmount.merge(heavy,1.0,Double::sum);
+        }
+        if(entity instanceof  MediumAircraft){
+            this.entityAmount.merge(medium,1.0,Double::sum);
+        }
+        if (entity instanceof LightAircraft){
+            this.entityAmount.merge(light,1.0,Double::sum);
+        }
+
     }
 
     @Override

@@ -14,7 +14,7 @@ public interface Reportable {
     void calculateTransitTime(Event event);
     void calculateIdleTime(Server server, Event event);
     void calculateQueueLength(Queue queue, Server server);
-    void addEntityAmount();
+    void addEntityAmount(Entity entity);
     void calculateEndAtributes(ArrayList <Server> servers);
 
 }

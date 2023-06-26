@@ -16,8 +16,12 @@ public class App {
     private static final double SIMULATION_LENGHT = 40320;
 
     public static void main(String[] args) {
-        List<Server> servers = ScenarioBuilder.LMHA(2,4,3);
-        AirportSim sim =new AirportSim(SIMULATION_LENGHT,servers,new LMHASP(),new CustomRandomizer(),new CustomReport(50), new CustomRandomizer());
-        sim.run();
+        List<Server> servers = ScenarioBuilder.LMHA(2,2,2);
+        CustomReport report = new CustomReport(50);
+        for (int i =0; i<50; i++){
+            AirportSim sim =new AirportSim(SIMULATION_LENGHT,servers,new LMHASP(),new CustomRandomizer(),report, new CustomRandomizer());
+            sim.run();
+        }
+
     }
 }

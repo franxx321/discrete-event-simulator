@@ -39,7 +39,7 @@ public class EndOfService extends Event {
         this.report.calculateTransitTime(this);
         this.getEntity().addEvent(this);
         this.getEntity().applyEffect(this.getEntity().getServer());
-        this.report.addEntityAmount();
+        this.report.addEntityAmount(this.getEntity());
     }
 
     @Override
