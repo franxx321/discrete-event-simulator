@@ -6,6 +6,7 @@ import gida.simulators.labs.first.resources.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CustomReport implements Reportable {
@@ -68,19 +69,21 @@ public class CustomReport implements Reportable {
     private int replicationsCount;
 
     private String calculateMeanInterval(ArrayList<Double> data){
+
         double acum=0;
         double currentMean=0;
         double stdDev=0;
         String ret;
         for (Double number: data) {
             acum+=number;
+            //System.out.println("number "+number);
         }
-        currentMean=acum/replicationsAmount-1;
+        currentMean=acum/replicationsAmount;
         acum=0;
         for (Double number:data) {
             acum=Math.pow(number-currentMean,2);
         }
-        stdDev=Math.sqrt(acum/replicationsAmount-1);
+        stdDev=Math.sqrt(acum/(replicationsAmount-1));
         ret="Mean: "+currentMean+" Confidence Interval: "+(currentMean-stdDev)+" - "+(currentMean+stdDev);
         return ret;
     }
@@ -89,6 +92,12 @@ public class CustomReport implements Reportable {
         System.out.println("Aircraft Data:\n");
         System.out.println("Aircraft Amount: ");
         System.out.println("\t"+calculateMeanInterval(this.replicationEntityAmount.get(general))+"\n\n");
+        System.out.println("Light Aircraft Amount: ");
+        System.out.println("\t"+calculateMeanInterval(this.replicationEntityAmount.get(light))+"\n\n");
+        System.out.println("Medium Aircraft Amount: ");
+        System.out.println("\t"+calculateMeanInterval(this.replicationEntityAmount.get(medium))+"\n\n");
+        System.out.println("Heavy Aircraft Amount: ");
+        System.out.println("\t"+calculateMeanInterval(this.replicationEntityAmount.get(heavy))+"\n\n");
         for (String key1:aircrafts) {
             for (String key2: times) {
                 for (String key3:type){
@@ -109,30 +118,41 @@ public class CustomReport implements Reportable {
     }
 
     private void loadReplicationData(){
+        for (String key: aircrafts){
+            replicationEntityAmount.get(key).add(entityAmount.get(key));
+            System.out.println(key+" "+ "Amount: "+ entityAmount.get(key)+"\t\t\t\t");
+        }
+
         for (String key1: aircrafts) {
             for (String key2:times) {
                 for (String key3: type) {
                     if(key3.equals(mean)){
                         replicationAircraftData.get(key1).get(key2).get(key3).add(aircraftData.get(key1).get(key2).get(key3)/this.entityAmount.get(key1));
+                        System.out.println( key1+" "+key2+" "+key3+" "+aircraftData.get(key1).get(key2).get(key3)/this.entityAmount.get(key1)+"\t\t\t\t");
                     }
                     else {
                         replicationAircraftData.get(key1).get(key2).get(key3).add(aircraftData.get(key1).get(key2).get(key3));
+                        System.out.println( key1+" "+key2+" "+key3+" "+aircraftData.get(key1).get(key2).get(key3)+"\t\t\t\t");
                     }
                 }
             }
         }
         for (Map.Entry<Integer,HashMap<String,Double>> currentAirstripData:airstripData.entrySet()){
+            System.out.println("Server ID: "+currentAirstripData.getKey());
+
             checkReplicationAirstrip(currentAirstripData.getKey());
             for (String key1: airstripKeys) {
                 if(key1.equals(idlePercentage)){
-                    replicationAirstripData.get(currentAirstripData.getKey()).get(key1).add((currentAirstripData.getValue().get(key1)/this.lastClock));
+                    replicationAirstripData.get(currentAirstripData.getKey()).get(key1).add(currentAirstripData.getValue().get(cumulativeIdle)/this.lastClock*100);
+                    System.out.println(  key1+ ": "+currentAirstripData.getValue().get(cumulativeIdle)/this.lastClock*100+"\t\t\t\t");
                 }
-
                 else{
                     replicationAirstripData.get(currentAirstripData.getKey()).get(key1).add(currentAirstripData.getValue().get(key1));
+                    System.out.println(key1+ ": "+currentAirstripData.getValue().get(key1)+"\t\t\t\t");
                 }
             }
         }
+
     }
 
     private void checkReplicationAirstrip(int id) {
@@ -157,6 +177,9 @@ public class CustomReport implements Reportable {
             for (String key1: airstripKeys) {
                currentAirstripData.getValue().put(key1,0.0);
             }
+        }
+        for( String key:aircrafts){
+            entityAmount.put(key, 0.0);
         }
     }
 
@@ -301,7 +324,7 @@ public class CustomReport implements Reportable {
     }
 
     @Override
-    public void addEntityAmount(Entity entity) {
+    public void addEntityAmount(Entity entity)  {
         if(!(entity instanceof MaintenanceCrew)){
         this.entityAmount.merge(general,1.0,Double::sum);
         }
@@ -318,15 +341,13 @@ public class CustomReport implements Reportable {
     }
 
     @Override
-    public void calculateEndAtributes(ArrayList<Server> servers) {
+    public void calculateEndAtributes(List<Server> servers) {
         for (Server server:servers) {
             checkAirstrip(server);
             Airstrip currentAirstrip = (Airstrip)server;
             airstripData.get(currentAirstrip.getId()).put(durability,(double)currentAirstrip.getDurability());
         }
     }
-
-
 
 
     public double getLastClock() {

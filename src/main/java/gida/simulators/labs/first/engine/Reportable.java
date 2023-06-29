@@ -6,6 +6,7 @@ import gida.simulators.labs.first.resources.Queue;
 import gida.simulators.labs.first.resources.Server;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface Reportable {
 
@@ -15,6 +16,6 @@ public interface Reportable {
     void calculateIdleTime(Server server, Event event);
     void calculateQueueLength(Queue queue, Server server);
     void addEntityAmount(Entity entity);
-    void calculateEndAtributes(ArrayList <Server> servers);
+    void calculateEndAtributes(List<Server> servers);
 
 }

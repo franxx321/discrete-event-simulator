@@ -6,12 +6,7 @@ import gida.simulators.labs.first.resources.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LMHASP implements ServerSelectionPolicy {
-    /*CDESC Light Medium Heavy Aircraft Selection Policy, implements ServerSelectionPolicy
-     * returns the server that needs to be operated on*/
-
-
-
+public class TPM3P implements ServerSelectionPolicy {
     @Override
     public Server selectServer(List<Server> servers, Entity entity) {
         Server ret = null;
@@ -48,16 +43,16 @@ public class LMHASP implements ServerSelectionPolicy {
             }
             ret = getServer(ret, correctTypeAirstrip);
         }
-            if (ret == null) {
-                for (Server server : servers) {
-                    if (!this.expectingMaintenance(server)) {
-                        ret = server;
-                        return ret;
-                    }
-
+        if (ret == null) {
+            for (Server server : servers) {
+                if (!this.expectingMaintenance(server)) {
+                    ret = server;
+                    return ret;
                 }
+
             }
-            return ret;
+        }
+        return ret;
 
     }
 
@@ -113,5 +108,4 @@ public class LMHASP implements ServerSelectionPolicy {
         return ret;
 
     }
-
 }

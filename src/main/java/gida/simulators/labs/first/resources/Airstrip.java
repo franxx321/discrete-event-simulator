@@ -57,26 +57,5 @@ public abstract class Airstrip extends Server {
         return maxDurability;
     }
 
-    public boolean expectingMaintenance() {
-        boolean ret=false;
-        try{
-            if(this.getCurrentEntity() instanceof MaintenanceCrew){
-                ret=true;
-            }
-            else {
-                for (Queue queue:this.getQueues()) {
-                    if (queue.checkLast() instanceof MaintenanceCrew){
-                        return true;
-                    }
-                }
-            }
-        }
-        catch (NullPointerException nullPointerException){
-            ret=false;
-        }
-        finally {
-            return ret;
-        }
 
-    }
 }

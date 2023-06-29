@@ -95,6 +95,7 @@ public class AirportSim extends Engine {
                 report.setLastClock(event.getClock());
             }
         }
+        report.calculateEndAtributes(this.servers);
         report.generateReport();
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'run'");

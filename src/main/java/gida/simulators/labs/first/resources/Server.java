@@ -43,20 +43,20 @@ public abstract class Server {
         return this.currentEntity!=null;
     }
 
-    /*public boolean queuesEmpty() {
+    public boolean queuesEmpty() {
         return this.policy.queuesEmpty(this.queues);
-    }*/
+    }
 
-    /*public void enqueue(Entity entity) {
+    public void enqueue(Entity entity) {
         this.policy.enqueue(this.queues,entity);
-    }*/
+    }
 
-    /*public Entity dequeue() {
+    public Entity dequeue() {
         return this.policy.dequeue(this.queues);
-    }*/
+    }
 
-    public Queue getQueue(){
-        return this.policy.getQueue(this.queues);
+    public Queue getLastQueue(){
+        return this.policy.getLastQueue(this.queues);
     }
 
     public List<Queue> getQueues(){
