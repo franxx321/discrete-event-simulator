@@ -21,7 +21,7 @@ public class App {
     public static void main(String[] args) {
         CustomReport report = new CustomReport(REPLICATION_AMOUNT);
         for (int i =0; i<REPLICATION_AMOUNT; i++){
-            List<Server> servers = ScenarioBuilder.LMHA(2,4,3);
+            List<Server> servers = ScenarioBuilder.LMHA(2,2,1);
             //List<Server> servers = ScenarioBuilder.TPM3(2,4,3);
             AirportSim sim =new AirportSim(SIMULATION_LENGHT,servers,new LMHASP(),new CustomRandomizer(),report, new CustomRandomizer());
             sim.run();
